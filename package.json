@@ -4,6 +4,7 @@
   "private": true,
   "description": "App nativo Papufy (Capacitor) — iOS e Android",
   "scripts": {
+    "icons": "node scripts/generate-icons.mjs && npx capacitor-assets generate --android --ios",
     "sync:web": "node scripts/sync-web.mjs",
     "build:web": "npm run sync:web",
     "cap:sync": "npm run sync:web && npx cap sync",

@@ -66,10 +66,11 @@ Atualizações de tela/API = deploy Vercel/Render. Build nativo só para casco/�
 - [ ] Screenshots finais
 - [ ] Submissão
 
-## Regenerar ícones
+## Regenerar ícones (logo oficial do frontend)
 
 ```powershell
-# resources/icon.png + splash.png
-npx capacitor-assets generate --android --ios
+npm run icons
 npx cap sync
 ```
+
+Fonte: `../papufy-frontend/public/nome.png`
