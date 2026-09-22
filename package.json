@@ -1,0 +1,31 @@
+{
+  "name": "papufy-app",
+  "version": "1.0.0",
+  "private": true,
+  "description": "App nativo Papufy (Capacitor) — iOS e Android",
+  "scripts": {
+    "sync:web": "node scripts/sync-web.mjs",
+    "build:web": "npm run sync:web",
+    "cap:sync": "npm run sync:web && npx cap sync",
+    "cap:android": "npm run cap:sync && npx cap open android",
+    "cap:ios": "npm run cap:sync && npx cap open ios",
+    "android": "npx cap run android",
+    "ios": "npx cap run ios"
+  },
+  "dependencies": {
+    "@capacitor/android": "^7.4.3",
+    "@capacitor/app": "^7.1.0",
+    "@capacitor/core": "^7.4.3",
+    "@capacitor/ios": "^7.4.3",
+    "@capacitor/keyboard": "^7.0.3",
+    "@capacitor/splash-screen": "^7.0.3",
+    "@capacitor/status-bar": "^7.0.3"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^7.4.3",
+    "typescript": "^5.8.3"
+  },
+  "engines": {
+    "node": "20.x"
+  }
+}

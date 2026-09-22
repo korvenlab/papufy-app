@@ -1,0 +1,30 @@
+node_modules/
+dist/
+www/
+.DS_Store
+*.log
+.env
+.env.*
+!.env.example
+.idea/
+.vscode/
+*.keystore
+*.jks
+
+# Android build artifacts
+android/.gradle/
+android/app/build/
+android/build/
+android/captures/
+android/local.properties
+android/*.iml
+android/.idea/
+android/app/*.iml
+
+# iOS build artifacts
+ios/App/Pods/
+ios/App/public/
+ios/DerivedData/
+ios/**/*.xcworkspace/xcuserdata/
+ios/**/*.xcodeproj/xcuserdata/
+ios/**/*.xcodeproj/project.xcworkspace/xcuserdata/
