@@ -1,64 +1,47 @@
 # Papufy App — Capacitor
 
-Shell nativo (Android / iOS) em cima do frontend React + Vite já existente.
+O app nativo exibe **a mesma experiência mobile do navegador** em
+[papufy.com](https://papufy.com) (MobileShell, bottom nav, rotas e API).
 
-## Estrutura
+Não é um app redesenhado: é o site mobile dentro do WebView.
+
+## Como funciona
+
+Por padrão o Capacitor abre `https://papufy.com` no aparelho.
+O que você vê no Chrome/Safari em modo celular = o que o app mostra.
 
 ```
-papufy-app/          ← este repositório
-papufy-frontend/     ← UI web (irmã em D:\Projetos\papufy-frontend)
-papufy-backend/      ← API Render + Supabase
+papufy-app/       ← casco nativo (Android / iOS)
+papufy-frontend/  ← UI (deploy Vercel → papufy.com)
+papufy-backend/    ← API Render + Supabase
 ```
-
-## Pré-requisitos
-
-- Node 20+
-- Android Studio (Android)
-- Xcode em macOS (iOS)
-- Contas Apple Developer / Google Play (para publicar)
 
 ## Setup
 
 ```bash
 cd D:\Projetos\papufy-app
 npm install
-npm run cap:sync
+npx cap sync
 ```
 
-`cap:sync` copia o build de `../papufy-frontend/dist` para `www/` e roda `npx cap sync`.
-
-Se o frontend ainda não tiver `dist`, o script tenta buildar o frontend (`npm run build` lá).
-
-### Abrir no Android Studio
+Abrir projetos nativos (quando for testar no device/emulador):
 
 ```bash
-npm run cap:android
+npx cap open android   # Android Studio
+npx cap open ios       # Xcode (só macOS)
 ```
 
-### Modo live (WebView apontando para produção)
+## Bundle local (opcional, depois)
 
-Útil no começo, sem rebundle a cada mudança:
+Se um dia quiser embutir o `dist` do frontend em vez do site ao vivo:
 
 ```powershell
-$env:CAP_SERVER_URL="https://papufy.com"
+$env:CAP_USE_BUNDLE="1"
+npm run sync:web
 npx cap sync
-npx cap open android
 ```
 
-## Variáveis do frontend (Vercel)
+## IDs
 
-O app usa a mesma API. No bundle, o frontend já vem com `VITE_API_URL` apontando ao Render.
-
-Para recovery de senha no app, configure no Supabase as Redirect URLs do domínio (e deep links depois).
-
-## Bundle ID
-
-- Android / iOS: `com.papufy.app`
+- App ID: `com.papufy.app`
 - Nome: Papufy
-
-## Próximos passos
-
-1. Ícones e splash (`resources/` + `@capacitor/assets`)
-2. Deep links / Universal Links
-3. Ajustar CORS no backend para origem Capacitor se necessário
-4. TestFlight + Internal testing Play
