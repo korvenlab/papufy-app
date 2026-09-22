@@ -1,5 +1,7 @@
 # Papufy App — Capacitor
 
+Repositório: https://github.com/korvenlab/papufy-app
+
 O app nativo exibe **a mesma experiência mobile do navegador** em
 [papufy.com](https://papufy.com).
 
