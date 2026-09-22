@@ -17,12 +17,14 @@ android/app/build/
 android/build/
 android/captures/
 android/local.properties
+android/keystore.properties
 android/*.iml
 android/.idea/
 android/app/*.iml
+*.keystore
+*.jks
+papufy-upload.keystore
 
-# iOS build artifacts
-ios/App/Pods/
 ios/App/public/
 ios/DerivedData/
 ios/**/*.xcworkspace/xcuserdata/
