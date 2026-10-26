@@ -43,6 +43,10 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
+	</array>
 	<key>NSCameraUsageDescription</key>
 	<string>A Papufy usa a câmera para você enviar fotos de perfil, anúncios e conversas.</string>
 	<key>NSPhotoLibraryUsageDescription</key>

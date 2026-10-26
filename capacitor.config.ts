@@ -1,11 +1,11 @@
 import type { CapacitorConfig } from "@capacitor/cli";
 
 /**
- * O app é a versão mobile do site — mesmo UI do navegador no celular.
- * Carrega https://papufy.com no WebView (MobileShell, rotas, API iguais).
+ * O app abre o site mobile (https://papufy.com) e acrescenta recursos do celular:
+ * câmera, localização e notificações push (plugins nativos).
+ * Uma atualização do site entra no app sem novo binário.
  *
- * Para build offline/bundle local no futuro:
- *   CAP_USE_BUNDLE=1  (usa ./www sincronizado do frontend)
+ * Bundle local (sem URL remota): CAP_USE_BUNDLE=1
  */
 const useBundle = process.env.CAP_USE_BUNDLE === "1";
 const siteUrl =
@@ -49,6 +49,9 @@ const config: CapacitorConfig = {
     StatusBar: {
       style: "LIGHT",
       backgroundColor: "#0b0b0b",
+    },
+    PushNotifications: {
+      presentationOptions: ["badge", "sound", "alert"],
     },
   },
 };
