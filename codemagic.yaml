@@ -1,0 +1,63 @@
+# Build iOS do Papufy (Capacitor) no Codemagic.
+# O app carrega https://papufy.com — não precisa buildar o frontend aqui.
+workflows:
+  ios-app-store:
+    name: Papufy iOS → App Store Connect
+    max_build_duration: 120
+    instance_type: mac_mini_m2
+    integrations:
+      app_store_connect: Codemagic
+    environment:
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: com.papufy.app
+      vars:
+        XCODE_WORKSPACE: App.xcworkspace
+        XCODE_SCHEME: App
+        # Preencha depois de criar o app no App Store Connect
+        # (App → Informações gerais → Apple ID numérico):
+        APP_STORE_APPLE_ID: "0000000000"
+      node: v20
+      xcode: latest
+      cocoapods: default
+    scripts:
+      - name: Instalar dependências npm
+        script: |
+          npm ci || npm install
+      - name: Garantir pasta www (placeholder)
+        script: |
+          npm run sync:web
+      - name: CocoaPods
+        script: |
+          cd ios/App && pod install
+      - name: Sync Capacitor iOS
+        script: |
+          npx cap sync ios
+      - name: Aplicar perfis de assinatura
+        script: |
+          xcode-project use-profiles
+      - name: Incrementar build number
+        script: |
+          cd $CM_BUILD_DIR/ios/App
+          if [ "$APP_STORE_APPLE_ID" != "0000000000" ]; then
+            LATEST=$(app-store-connect get-latest-app-store-build-number "$APP_STORE_APPLE_ID" || echo "0")
+            NEXT=$((${LATEST:-0} + 1))
+          else
+            NEXT=${BUILD_NUMBER:-1}
+          fi
+          agvtool new-version -all "$NEXT"
+          agvtool new-marketing-version "1.0.0"
+      - name: Gerar IPA
+        script: |
+          cd $CM_BUILD_DIR/ios/App
+          xcode-project build-ipa \
+            --workspace "$XCODE_WORKSPACE" \
+            --scheme "$XCODE_SCHEME"
+    artifacts:
+      - ios/App/build/ios/ipa/*.ipa
+      - /tmp/xcodebuild_logs/*.log
+    publishing:
+      app_store_connect:
+        auth: integration
+        submit_to_testflight: true
+        submit_to_app_store: false
