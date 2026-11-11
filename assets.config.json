@@ -1,6 +1,6 @@
 {
   "iconBackgroundColor": "#0b0b0b",
-  "splashBackgroundColor": "#0b0b0b",
+  "splashBackgroundColor": "#ffffff",
   "splashFullScreen": true,
-  "splashFitToWidth": true
+  "splashFitToWidth": false
 }

@@ -15,7 +15,7 @@ const config: CapacitorConfig = {
   appId: "com.papufy.app",
   appName: "Papufy",
   webDir: "www",
-  backgroundColor: "#0b0b0b",
+  backgroundColor: "#ffffff",
   server: useBundle
     ? {
         androidScheme: "https",
@@ -32,10 +32,10 @@ const config: CapacitorConfig = {
       },
   android: {
     allowMixedContent: false,
-    backgroundColor: "#0b0b0b",
+    backgroundColor: "#ffffff",
   },
   ios: {
-    backgroundColor: "#0b0b0b",
+    backgroundColor: "#ffffff",
     contentInset: "automatic",
     preferredContentMode: "mobile",
   },
@@ -43,12 +43,13 @@ const config: CapacitorConfig = {
     SplashScreen: {
       launchShowDuration: 1200,
       launchAutoHide: true,
-      backgroundColor: "#0b0b0b",
+      backgroundColor: "#ffffff",
+      androidScaleType: "CENTER_INSIDE",
       showSpinner: false,
     },
     StatusBar: {
-      style: "LIGHT",
-      backgroundColor: "#0b0b0b",
+      style: "DARK",
+      backgroundColor: "#ffffff",
     },
     PushNotifications: {
       presentationOptions: ["badge", "sound", "alert"],

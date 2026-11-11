@@ -24,6 +24,8 @@ android/app/*.iml
 *.keystore
 *.jks
 papufy-upload.keystore
+*.aab
+papufy-v*.aab
 
 ios/App/public/
 ios/DerivedData/
